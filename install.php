@@ -67,8 +67,6 @@ bot("sendMessage",[
 ?>
 <html>
   <head>
-    <script type="text/javascript">
-            window.location.href = "/index.html"
     </script>
  </head>
   <body>
