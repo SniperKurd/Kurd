@@ -14,5 +14,9 @@
   "devDependencies": {
     "http-server": "^14.1.1",
     "playwright": "^1.42.0"
+    "test": "echo 'No tests specified'"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2"
   }
 }

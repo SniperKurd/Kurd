@@ -35,5 +35,24 @@
   </div>
   <script src="./libs/ethers.umd.min.js"></script>
   <script type="module" src="./src/modules/admin/ui.js"></script>
+</head>
+<body>
+  <h1>Admin Configuration</h1>
+  <form id="configForm">
+    <div>
+      <label>Pair Address <input type="text" id="pair" required></label>
+    </div>
+    <div>
+      <label>RPC URL <input type="text" id="rpc"></label>
+    </div>
+    <div>
+      <label>Router Address <input type="text" id="router"></label>
+    </div>
+    <div>
+      <label>Default Slippage (%) <input type="number" id="slippage" value="1"></label>
+    </div>
+    <button type="submit">Save</button>
+  </form>
+  <script src="./assets/js/admin.js"></script>
 </body>
 </html>
