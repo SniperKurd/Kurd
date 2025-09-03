@@ -1,0 +1,11 @@
+{
+  "name": "token-swap-skeleton",
+  "version": "0.1.0",
+  "description": "Minimal front-end for a single token swap pair",
+  "scripts": {
+    "test": "echo 'No tests specified'"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2"
+  }
+}
