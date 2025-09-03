@@ -37,5 +37,4 @@ Run:
 ```bash
 npm test
 ```
-
-Currently there are no automated tests; this command will output a placeholder message.
+This runs Playwright end-to-end tests that open the swap and admin pages, verifying basic UI elements and mocking RPC calls.

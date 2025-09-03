@@ -6,12 +6,13 @@
     "setup": "npm ci || npm install",
     "dev": "http-server -a 0.0.0.0 -p ${PORT:-5173} -c-1 .",
     "start": "http-server -a 0.0.0.0 -p ${PORT:-8080} -c-1 .",
-    "test": "echo \"(no tests)\""
+    "test": "playwright test"
   },
   "dependencies": {
     "ethers": "^5.7.2"
   },
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "playwright": "^1.42.0"
   }
 }
