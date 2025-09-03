@@ -27,11 +27,15 @@ export async function loadPairInfo(config, provider) {
   ]);
   const reserve0 = Number(reserves.reserve0) / 10 ** d0;
   const reserve1 = Number(reserves.reserve1) / 10 ** d1;
-  const price = reserve1 && reserve0 ? formatPrice(reserve1 / reserve0) : 'N/A';
+  const priceNum = reserve1 && reserve0 ? reserve1 / reserve0 : null;
+  const price = priceNum ? formatPrice(priceNum) : 'N/A';
 
   return {
     token0: { address: t0, name: name0, symbol: sym0, decimals: d0 },
     token1: { address: t1, name: name1, symbol: sym1, decimals: d1 },
-    price
+    reserve0,
+    reserve1,
+    price,
+    priceNum
   };
 }
