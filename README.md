@@ -13,7 +13,7 @@ This project provides a minimal front‑end for swapping a single token pair on 
    ```
 
    This uses `http-server` to serve the files on <http://localhost:8080>.
-3. Open `admin.html` and enter the pair address, router address and optional RPC/slippage values. The configuration is stored in the browser's `localStorage`.
+3. Open `admin.html` and enter the pair address, router address, optional RPC/slippage values and admin token. You can test the RPC connection via **"اختبار الاتصال"** which reads the latest block number. Saving sends the configuration to `config/save-config.php` with a Bearer token and persists it locally on success.
 4. Open `index.html` to access the swap interface.
 
 ## Usage
@@ -26,9 +26,9 @@ This project provides a minimal front‑end for swapping a single token pair on 
 ## Development
 
 - `libs/ethers.umd.min.js` contains the Ethers.js library to interact with BSC.
-- `assets/js/admin.js` handles saving admin configuration to `localStorage`.
-- `assets/js/app.js` reads the configuration, fetches token metadata, calculates price data and performs swaps.
-- `assets/js/revert-diagnoser.js` is a placeholder for future revert diagnostics.
+- `src/modules/admin/*` contains the admin UI logic and local storage helpers.
+- `src/modules/swap/*` reads configuration, fetches token metadata, calculates price data and performs swaps.
+- `src/modules/diagnoser/revert.js` is a placeholder for future revert diagnostics.
 
 ## Testing
 

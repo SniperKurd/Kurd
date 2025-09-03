@@ -10,6 +10,10 @@ export function initAdmin() {
   const rpcInput = byId('rpc');
   const routerInput = byId('router');
   const slippageInput = byId('slippage');
+  const tokenInput = byId('token');
+  const testBtn = byId('testBtn');
+  const msg = byId('msg');
+  const debugEl = byId('debug');
 
   const cfg = getConfig();
   if (cfg.pair) pairInput.value = cfg.pair;
@@ -17,16 +21,69 @@ export function initAdmin() {
   if (cfg.router) routerInput.value = cfg.router;
   if (typeof cfg.slippageDefault === 'number') slippageInput.value = cfg.slippageDefault;
 
-  form.addEventListener('submit', (e) => {
+  testBtn.addEventListener('click', async () => {
+    try {
+      const rpc = rpcInput.value.trim();
+      const provider = new ethers.JsonRpcProvider(rpc);
+      const bn = await provider.getBlockNumber();
+      msg.textContent = `اتصال ناجح. رقم البلوك: ${bn}`;
+      msg.style.color = 'green';
+    } catch (err) {
+      msg.textContent = `فشل الاتصال: ${err.message}`;
+      msg.style.color = 'red';
+      if (debugEl) debugEl.textContent = err.stack || String(err);
+    }
+  });
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    let pair, router;
+    try {
+      pair = ethers.getAddress(pairInput.value.trim());
+    } catch (err) {
+      msg.textContent = 'عنوان الزوج غير صالح';
+      msg.style.color = 'red';
+      return;
+    }
+    try {
+      router = ethers.getAddress(routerInput.value.trim());
+    } catch (err) {
+      msg.textContent = 'عنوان الراوتر غير صالح';
+      msg.style.color = 'red';
+      return;
+    }
+
     const newCfg = {
-      pair: pairInput.value.trim(),
+      pair,
       rpc: rpcInput.value.trim(),
-      router: routerInput.value.trim(),
+      router,
       slippageDefault: parseFloat(slippageInput.value) || 0,
     };
-    setConfig(newCfg);
-    alert('Configuration saved');
+
+    try {
+      const res = await fetch('./config/save-config.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${tokenInput.value.trim()}`,
+        },
+        body: JSON.stringify(newCfg),
+      });
+      const text = await res.text();
+      if (res.ok) {
+        setConfig(newCfg);
+        msg.textContent = 'تم الحفظ بنجاح';
+        msg.style.color = 'green';
+      } else {
+        msg.textContent = `فشل الحفظ: ${text}`;
+        msg.style.color = 'red';
+      }
+      if (debugEl) debugEl.textContent = text;
+    } catch (err) {
+      msg.textContent = `خطأ: ${err.message}`;
+      msg.style.color = 'red';
+      if (debugEl) debugEl.textContent = err.stack || String(err);
+    }
   });
 }
 

@@ -14,7 +14,6 @@
       </label>
       <label>RPC URL
         <input type="text" id="rpc">
-        <button type="button" id="testBtn">اختبار الاتصال</button>
       </label>
       <label>Router Address
         <input type="text" id="router">
@@ -22,18 +21,9 @@
       <label>Default Slippage (%)
         <input type="number" id="slippage" value="1">
       </label>
-      <label>Admin Token
-        <input type="password" id="token">
-      </label>
       <button type="submit">Save</button>
     </form>
-    <div id="msg"></div>
-    <details id="debugPanel" style="margin-top:1em">
-      <summary>Debug</summary>
-      <pre id="debug"></pre>
-    </details>
   </div>
-  <script src="./libs/ethers.umd.min.js"></script>
   <script type="module" src="./src/modules/admin/ui.js"></script>
 </body>
 </html>
