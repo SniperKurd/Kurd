@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Config</title>
+</head>
+<body>
+  <h1>Admin Configuration</h1>
+  <form id="configForm">
+    <div>
+      <label>Pair Address <input type="text" id="pair" required></label>
+    </div>
+    <div>
+      <label>RPC URL <input type="text" id="rpc"></label>
+    </div>
+    <div>
+      <label>Router Address <input type="text" id="router"></label>
+    </div>
+    <div>
+      <label>Default Slippage (%) <input type="number" id="slippage" value="1"></label>
+    </div>
+    <button type="submit">Save</button>
+  </form>
+  <script src="./assets/js/admin.js"></script>
+</body>
+</html>
