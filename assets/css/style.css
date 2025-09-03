@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f5f5f5;
+}
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+button {
+  margin-top: 15px;
+  padding: 10px 15px;
+  width: 100%;
+  background: #1fc7d4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+#pairInfo {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}
+#message {
+  margin-top: 10px;
+  min-height: 20px;
+  font-size: 0.9rem;
+  color: #c00;
+}

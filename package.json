@@ -1,0 +1,17 @@
+{
+  "name": "token-swap-skeleton",
+  "version": "0.1.0",
+  "description": "Minimal front-end for a single token swap pair",
+  "scripts": {
+    "setup": "npm ci || npm install",
+    "dev": "http-server -a 0.0.0.0 -p ${PORT:-5173} -c-1 .",
+    "start": "http-server -a 0.0.0.0 -p ${PORT:-8080} -c-1 .",
+    "test": "echo \"(no tests)\""
+  },
+  "dependencies": {
+    "ethers": "^5.7.2"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
