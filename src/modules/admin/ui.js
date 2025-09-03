@@ -24,7 +24,7 @@ export function initAdmin() {
   testBtn.addEventListener('click', async () => {
     try {
       const rpc = rpcInput.value.trim();
-      const provider = new ethers.JsonRpcProvider(rpc);
+      const provider = new ethers.providers.JsonRpcProvider(rpc);
       const bn = await provider.getBlockNumber();
       msg.textContent = `اتصال ناجح. رقم البلوك: ${bn}`;
       msg.style.color = 'green';
