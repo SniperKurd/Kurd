@@ -13,12 +13,13 @@
 
 ## بيئة التشغيل والمتغيّرات
 أنشئ/حدّث `.env.example` ثم انسخ إلى `.env` عند التشغيل:
-```
-ADMIN_TOKEN=        # رمز لحماية الحفظ/الرفع في PHP (اختياري لكنه موصى به)
-BASE_PATH=          # مسار أساسي إن استُضيفت الصفحات تحت مجلد فرعي (افتراضي فارغ "")
-RPC_URL_PRIMARY=    # RPC أساسي (https)
-RPC_URL_FALLBACK=   # RPC بديل (https)
-```
+ADMIN_TOKEN= # رمز لحماية الحفظ/الرفع في PHP (اختياري لكنه موصى به)
+BASE_PATH= # مسار أساسي إن استُضيفت الصفحات تحت مجلد فرعي (افتراضي فارغ "")
+RPC_URL_PRIMARY= # RPC أساسي (https)
+RPC_URL_FALLBACK= # RPC بديل (https)
+
+markdown
+نسخ الكود
 - اقرأ هذه القيم من البيئة في سكربتات/نقاط نهاية PHP والواجهة.
 
 ---
@@ -83,17 +84,18 @@ RPC_URL_FALLBACK=   # RPC بديل (https)
 **الهدف:** فصل المنطق إلى وحدات نظيفة قابلة للتوسّع.
 
 - أنشئ الهيكل التالي وانقل المنطق من `assets/js/app.js`, `assets/js/admin.js`, `assets/js/revert-diagnoser.js`:
-  ```
-  src/modules/
-    core/      dom.js, utils.js, format.js
-    admin/     ui.js, api.js           # لـ admin.html
-    swap/      router.js, pricing.js, slippage.js
-    diagnoser/ revert.js
-  ```
+src/modules/
+core/ dom.js, utils.js, format.js
+admin/ ui.js, api.js # لـ admin.html
+swap/ router.js, pricing.js, slippage.js
+diagnoser/ revert.js
+
+markdown
+نسخ الكود
 - اجعل سكربتات الصفحات `type="module"` واستورد من `src/modules`.
 - اكتب تعليقًا أعلى كل ملف يصف مسؤوليته.
 - **PR**: `feature/sprint-1` — “Modularization (ESM)”
-  - Checklist: [ ] لا كسر للوظيفة  [ ] وحدات مستقلة  [ ] إزالة التكرار
+- Checklist: [ ] لا كسر للوظيفة  [ ] وحدات مستقلة  [ ] إزالة التكرار
 
 ---
 
@@ -103,10 +105,10 @@ RPC_URL_FALLBACK=   # RPC بديل (https)
 - التحقق من عناوين العقود/العملات بواسطة `ethers` (Normalize + checksum).
 - **زر اختبار الاتصال** يقرأ `blockNumber` من `RPC_URL_PRIMARY` ويعرض النتيجة.
 - الحفظ إلى الخادم:
-  - أرسل `Authorization: Bearer <ADMIN_TOKEN>`
-  - رسائل نجاح/فشل عربية بسيطة + لوحة Debug للتفاصيل عند الطلب.
+- أرسل `Authorization: Bearer <ADMIN_TOKEN>`
+- رسائل نجاح/فشل عربية بسيطة + لوحة Debug للتفاصيل عند الطلب.
 - **PR**: `feature/sprint-2` — “Admin UX + Validation”
-  - Checklist: [ ] تحقق عناوين  [ ] حفظ آمن  [ ] إشعارات واضحة
+- Checklist: [ ] تحقق عناوين  [ ] حفظ آمن  [ ] إشعارات واضحة
 
 ---
 
@@ -115,43 +117,57 @@ RPC_URL_FALLBACK=   # RPC بديل (https)
 
 - حساب **slippage** و**minReceived** وتحذير تأثير سعري عالٍ.
 - **Revert diagnoser**:
-  - جرّب `estimateGas` قبل التنفيذ، وإن فشل أعطِ تلميحات (مثل نقص السماح/faulty pair).
+- جرّب `estimateGas` قبل التنفيذ، وإن فشل أعطِ تلميحات (مثل نقص السماح/faulty pair).
 - مهلة RPC + التبديل تلقائيًا إلى `RPC_URL_FALLBACK`.
 - رسائل أخطاء موجزة للمستخدم، ومفصّلة في Debug.
 - **PR**: `feature/sprint-3` — “Swap Reliability & Diagnostics”
-  - Checklist: [ ] حسابات سليمة  [ ] تشخيص دقيق  [ ] تعافٍ من فشل RPC
+- Checklist: [ ] حسابات سليمة  [ ] تشخيص دقيق  [ ] تعافٍ من فشل RPC
 
 ---
 
 ## Sprint 4 — اختبارات واجهة خفيفة (اختياري)
 - أضف Playwright محليًا فقط:
-  ```json
-  { "scripts": { "test": "playwright test" }, "devDependencies": { "playwright": "*" } }
-  ```
-- سيناريوهات: فتح الصفحة الرئيسية، وجود العناصر الأساسية، سيناريو إدخال زوج/انزلاق (RPC مُحاكًى).
-- **PR**: `feature/sprint-4` — “UI Tests”
+```json
+{ "scripts": { "test": "playwright test" }, "devDependencies": { "playwright": "*" } }
+سيناريوهات: فتح الصفحة الرئيسية، وجود العناصر الأساسية، سيناريو إدخال زوج/انزلاق (RPC مُحاكًى).
 
----
+PR: feature/sprint-4 — “UI Tests”
 
-## مخرجات مطلوبة بعد كل Sprint
-- رابط المعاينة الخارجي.
-- ملخص واضح: ماذا تغيّر ولماذا.
-- قائمة الملفات المضافة/المعدلة (Diff مختصر).
-- لقطات شاشة/ناتج أوامر يثبت التحقق (إن أمكن).
-- رابط الـPR.
+مخرجات مطلوبة بعد كل Sprint
+رابط المعاينة الخارجي.
 
----
+ملخص واضح: ماذا تغيّر ولماذا.
 
-## استكشاف أخطاء شائعة
-- **لا يظهر رابط المعاينة**: تأكد من الاستماع `0.0.0.0` واحترام `PORT`.
-- **صور/CSS لا تُحمّل**: أصلح المسارات واجعلها نسبية.
-- **401 عند الحفظ/الرفع**: وفّر `ADMIN_TOKEN` في البيئة/`.env`.
-- **CORS/Mixed Content**: استخدم RPC عبر https فقط.
+قائمة الملفات المضافة/المعدلة (Diff مختصر).
 
----
+لقطات شاشة/ناتج أوامر يثبت التحقق (إن أمكن).
 
-## قائمة تحقق سريعة قبل طلب الدمج
-- [ ] تشغيل سحابي مستقر.
-- [ ] توثيق README محدّث.
-- [ ] لا أسرار داخل الريبو.
-- [ ] PR واضح مع Checklist ورابط المعاينة.
+رابط الـPR.
+
+استكشاف أخطاء شائعة
+لا يظهر رابط المعاينة: تأكد من الاستماع 0.0.0.0 واحترام PORT.
+
+صور/CSS لا تُحمّل: أصلح المسارات واجعلها نسبية.
+
+401 عند الحفظ/الرفع: وفّر ADMIN_TOKEN في البيئة/.env.
+
+CORS/Mixed Content: استخدم RPC عبر https فقط.
+
+قائمة تحقق سريعة قبل طلب الدمج
+ تشغيل سحابي مستقر.
+
+ توثيق README محدّث.
+
+ لا أسرار داخل الريبو.
+
+ PR واضح مع Checklist ورابط المعاينة.
+
+markdown
+نسخ الكود
+
+وبعد ما تحطّه:
+- اضغط **Mark as resolved** → ثم **Commit merge**  
+- ارجع لتبويب **Conversation** واضغط **Merge pull request**  
+- وعلى السيرفر:  
+  ```bash
+  git fetch origin && git pull --ff-only origin main
